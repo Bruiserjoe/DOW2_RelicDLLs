@@ -14,7 +14,7 @@ bool PlatInputUpdate(int* a1, HWND hwnd, int a3, int a4, int a5) {
 	if (platInputGlobal) {
 		// sub_10003210 called here
 		char v10 = 0;
-		int* v = platInputGlobal->sub_10003210(hwnd, a3, a4, a5, &v10);
+		bool v = platInputGlobal->sub_10003210(hwnd, a3, a4, a5, &v10);
 		*a1 = (int)v;
 		if (!(v10 == 0)) {
 			return true;
@@ -56,6 +56,16 @@ void Plat::Input::InputAcquire(bool a2) {
 
 }
 
-int* Plat::Win32InputDevice::sub_10003210(HWND hWnd, unsigned int a3, unsigned int a4, int a5, char* a6) {
-	
+bool Plat::Win32InputDevice::sub_10003210(HWND hwnd, unsigned int a3, unsigned int a4, int a5, char* a6) {
+	bool result;
+	if (!in2 || (result = in2->sub_10003210(hwnd, a3, a4, a5, a6), !*a6)) {
+		if (in) {
+			in->sub_10003210(hwnd, a3, a4, a5, a6);
+		}
+		result = (*a6 == 0);
+		if (!*a6) {
+
+		}
+	}
+
 }

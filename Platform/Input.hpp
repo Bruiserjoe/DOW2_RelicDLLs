@@ -6,9 +6,11 @@ namespace Plat {
 	class Input {
 	protected:
 		bool capture;
+		Input* in;
+		Input* in2;
 	public:
 		virtual BOOL CaptureCursor();
-		virtual int* sub_10003210(HWND hWnd, unsigned int a3, unsigned int a4, int a5, char* a6);
+		virtual bool sub_10003210(HWND hWnd, unsigned int a3, unsigned int a4, int a5, char* a6);
 		void InputAcquire(bool a2);
 	};
 	class Win32InputDevice : Input {
@@ -16,7 +18,7 @@ namespace Plat {
 
 	public:
 		BOOL CaptureCursor();
-		int* sub_10003210(HWND hWnd, unsigned int a3, unsigned int a4, int a5, char* a6);
+		bool sub_10003210(HWND hWnd, unsigned int a3, unsigned int a4, int a5, char* a6);
 	};
 }
 
