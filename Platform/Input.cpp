@@ -64,7 +64,37 @@ bool Plat::Win32InputDevice::sub_10003210(HWND hwnd, unsigned int a3, unsigned i
 		}
 		result = (*a6 == 0);
 		if (!*a6) {
-
+			if (a3 == 32) {
+				if (not_cursor == -1) {
+					*a6 = 0;
+					return false;
+				}
+				else {
+					SetCursor(*cursor);
+					*a6 = 1;
+					return true;
+				}
+			}
+		}
+		if (*(char*)(a3 - 512) < 0xD && a3 != 522) {
+			short high = HIWORD(a5);
+			float v30 = ((double)a5 / (PlatInputRectRight - 1));
+			float v31 = ((double)a5 / (PlatInputRectBottom - 1));
+			// sub_10002690((int)&v30);
+			float v28 = v30 - PreviousFloatRight;
+			float v29 = v31 - PreviousFloatBottom;
+			float v10 = 0.0f;
+			float v11 = 0.0f;
+			if (ByteGlobal1) {
+				v10 = FloatGlobal1;
+				v11 = FloatGlobal2;
+			}
+			else {
+				PreviousFloatRight = v30;
+				PreviousFloatBottom = v31;
+				v11 = v31;
+				v10 = v30;
+			}
 		}
 	}
 
